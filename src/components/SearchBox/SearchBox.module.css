@@ -1,0 +1,12 @@
+.searchBox {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    width: 335px;
+}
+  
+.searchImp {
+    padding: 8px 20px;
+    border-radius: 10px;
+}

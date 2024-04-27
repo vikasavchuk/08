@@ -1,0 +1,28 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+  
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 15px;
+}
+  
+.inpuForm {
+    width: 250px;
+    padding: 8px 20px;
+    border-radius: 10px;
+}
+  
+.buttoForm {
+    width: 100px;
+    margin: 10px auto 0;
+    border: none;
+    padding: 8px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+}
