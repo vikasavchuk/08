@@ -4,9 +4,9 @@ import { login, logout, refreshUser, register } from "./operations";
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    userData: null,
+    user: { name: null, email: null },
     token: null,
-    isSignedIn: false,
+    isLoggedIn: false,
     isRefreshing: false,
     loading: false,
     error: false,
@@ -19,9 +19,9 @@ const authSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.userData = payload.user;
+        state.user = payload.user;
         state.token = payload.token;
-        state.isSignedIn = true;
+        state.isLoggedIn = true;
         state.error = false;
       })
       .addCase(register.rejected, (state) => {
@@ -34,9 +34,9 @@ const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.userData = payload.user;
+        state.user = payload.user;
         state.token = payload.token;
-        state.isSignedIn = true;
+        state.isLoggedIn = true;
         state.error = false;
       })
       .addCase(login.rejected, (state) => {
@@ -50,7 +50,7 @@ const authSlice = createSlice({
       .addCase(refreshUser.fulfilled, (state, { payload }) => {
         state.isRefreshing = false;
         state.userData = payload;
-        state.isSignedIn = true;
+        state.isLoggedIn = true;
         state.error = false;
       })
       .addCase(refreshUser.rejected, (state) => {
@@ -62,9 +62,9 @@ const authSlice = createSlice({
         state.error = false;
       })
       .addCase(logout.fulfilled, (state) => {
-        (state.userData = null),
+        (state.user = null),
           (state.token = null),
-          (state.isSignedIn = false),
+          (state.isLoggedIn = false),
           (state.isRefreshing = false),
           (state.loading = false),
           (state.error = false);

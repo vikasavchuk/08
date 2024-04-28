@@ -2,7 +2,7 @@ import css from "./SearchBox.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useId } from "react";
 import { IoMdSearch } from "react-icons/io";
-import { changeFilter } from "../../redux/filters/slice.js";
+import { changeFilterName } from "../../redux/filters/slice.js";
 
 const SearchBox = () => {
   const id = useId();
@@ -10,7 +10,7 @@ const SearchBox = () => {
   const selectNameFilter = useSelector((state) => state.filter.name);
   const handleSearch = (e) => {
     const value = e.target.value;
-    dispatch(changeFilter(value));
+    dispatch(changeFilterName(value));
   };
   return (
     <div className={css.searchBox}>

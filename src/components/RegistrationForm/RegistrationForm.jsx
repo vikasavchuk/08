@@ -1,6 +1,7 @@
-import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { object, string } from "yup";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/auth/operations";
 
 const init = {
   name: "",
@@ -8,9 +9,11 @@ const init = {
   password: "",
 };
 
-const RegistrationForm = ({ onRegister }) => {
-  const nameId = useId();
-  const numberId = useId();
+const RegistrationForm = () => {
+  const dispatch = useDispatch();
+  const onRegister = (formData) => {
+    dispatch(register(formData));
+  };
 
   const RigisterSchema = object().shape({
     name: string()
@@ -35,40 +38,43 @@ const RegistrationForm = ({ onRegister }) => {
         validationSchema={RigisterSchema}
       >
         <Form>
-          <label htmlFor={nameId}>Name</label>
-          <Field
-            type="text"
-            name="name"
-            id={nameId}
-            placeholder="Viktoriia Savchuk"
-          />
+        <label>
+            Name
+            <Field
+              type="text"
+              name="name"
+              placeholder="Viktoriia Savchuk"
+            />
+          </label>
           <span>
             <ErrorMessage name="name" as="span" />
           </span>
 
-          <label htmlFor={nameId}>Email</label>
-          <Field
-            type="text"
-            name="email"
-            id={nameId}
-            placeholder="s.vika02030@gmail.com"
-          />
+          <label>
+            Email
+            <Field
+              type="text"
+              name="email"
+              placeholder="s.vika02030@gmail.com"
+            />
+          </label>
           <span>
             <ErrorMessage name="email" as="span" />
           </span>
-          <label htmlFor={numberId}>Password</label>
-          <Field
-            type="password"
-            name="password"
-            id={numberId}
-            placeholder="password"
-          />
+          <label>
+            Password
+            <Field
+              type="password"
+              name="password"
+              placeholder="password"
+            />
+          </label>
           <span>
             <ErrorMessage name="password" as="span" />
           </span>
 
           <button type="submit">
-            registration
+            Registration
           </button>
         </Form>
       </Formik>

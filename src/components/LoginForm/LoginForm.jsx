@@ -1,15 +1,18 @@
-import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { object, string } from "yup";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/auth/operations";
 
 const init = {
   email: "",
   password: "",
 };
 
-const LoginForm = ({ onLogin }) => {
-  const nameId = useId();
-  const numberId = useId();
+const LoginForm = () => {
+  const dispatch = useDispatch();
+  const onLogin = (formData) => {
+    dispatch(login(formData));
+  };
 
   const RigisterSchema = object().shape({
     email: string().email("Must be a valid email").required("Required"),
@@ -30,23 +33,25 @@ const LoginForm = ({ onLogin }) => {
         validationSchema={RigisterSchema}
       >
         <Form>
-          <label htmlFor={nameId}>Email</label>
-          <Field
-            type="text"
-            name="email"
-            id={nameId}
-            placeholder="s.vika02030@gmail.com"
-          />
+        <label>
+            Email
+            <Field
+              type="text"
+              name="email"
+              placeholder="s.vika02030@gmail.com"
+            />
+          </label>
           <span>
             <ErrorMessage name="email" as="span" />
           </span>
-          <label htmlFor={numberId}>Password</label>
-          <Field
-            type="password"
-            name="password"
-            id={numberId}
-            placeholder="password"
-          />
+          <label>
+            Password
+            <Field
+              type="password"
+              name="password"
+              placeholder="password"
+            />
+          </label>
           <span>
             <ErrorMessage name="password" as="span" />
           </span>
